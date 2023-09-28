@@ -7,71 +7,44 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>Fullstack Quiz</title>
 </head>
-
-<!--Add do you want to play card
-    Add high score card
-    Save User Data
-    create top 10 score card
-    Add 20 questions
--->
-
 <body>
     <header>
         <h1>Fullstack Quiz Questions</h1>
         <nav>
             <ul>
-                <li>
+                <!-- <li>
                     <a href="#high_score">High Score</a>
-                </li>
-               <!-- <li>
-                    <a href="#rules">Rules</a>
-                </li>
-                -->
+                </li> -->
                 <li class="last-child">
                     <a href="#test_options">Test Options</a>
                 </li>
             </ul>
         </nav>
-
     </header>
     <main>
-       <!-- <section>
-            <div>
-                <div class="opacity">
-                    <h2>Welcome to the Code Game...</h2>
-                </div>
-                <p>RULES HERE</p>
-            </div>
-        </section>
-    -->
         <section id="quiz">
             <div>
-               <!-- <div class="opacity">
-                    <h2>Quiz</h2>
-                </div>
-            -->
-                <h5>Timer:</h5>
+                <h5 id="timer">Timer:</h5>
                 <h3 id="query">Question Here</h3>
+                
                 <div class="button_group">
-                    <button>Option 1</button>
-                    <button>Option 2</button>
-                    <button>Option 3</button>
-                    <button>Option 4</button>
+                    <!-- <input type="checkbox" name="option" value="1" id="one"><label for="op_1">Option 1</label>
+                    <input type="checkbox" name="option" value="2" id="two"><label for="op_2">Option 2</label>
+                    <input type="checkbox" name="option" value="3" id="three"><label for="op_3">Option 3</label>
+                    <input type="checkbox" name="option" value="4" id="four"><label for="op_4">Option 4</label> -->
+                    <button class="clicked_one" id="one">Option 1</button>
+                    <button class="clicked_two" id="two">Option 2</button>
+                    <button class="clicked_three" id="three">Option 3</button>
+                    <button class="clicked_four" id="four">Option 4</button>
+                </div>
+                <div class="center">
+                    <div class="button_nav">
+                        <button id="back">Back</button>
+                        <button id="next">Next</button>
+                    </div>
                 </div>
             </div>
         </section>
-   <!--     <section id="rules">
-            <div class="opacity"> 
-                <h2>How to Play</h2>
-            </div>
-            <p>
-                Choose the kind of test you want to take, and how long you want your quiz to take.
-            </p>
-            <p>
-                Depending on how well you do, your score could be logged in!
-            </p>
-        </section>
-    -->
         <section id="test_options">
             <div class="opacity">
                 <h2>Test Options</h2>
@@ -82,44 +55,26 @@
                     <div class="item">
                         <div class="options">
                             <input type="checkbox" name="requirement" value="HTML" id="c1"><label for="c1">HTML</label>
-                            <input type="checkbox" name="requirement" value="CSS" id="c2"><label for="c2">CSS</label>
+                            <!-- <input type="checkbox" name="requirement" value="CSS" id="c2"><label for="c2">CSS</label>
                             <input type="checkbox" name="requirement" value="java_script" id="c3"><label for="c3">Javascript</label>
                             <input type="checkbox" name="requirement" value="web_apis" id="c4"><label for="c4">Web&nbsp;APIs</label>
-                        </div>
+                        </div> -->
                     </div>          
                 </div>
                 <div class="box">
                     <div class="item">
                         <div class="options">
-                            <input type="checkbox" name="requirement" value="30_sec" id="c5"><label for="c5">30&nbsp;Seconds</label>
-                            <input type="checkbox" name="requirement" value="1_min" id="c6"><label for="c6">1&nbsp;minute</label>
-                            <input type="checkbox" name="requirement" value="2_min" id="c7"><label for="c7">2&nbsp;minute</label>
-                            <input type="checkbox" name="requirement" value="2.3_min" id="c8"><label for="c9">2.30&nbsp;minute</label>
+                            <input type="checkbox" name="timer" value="30_sec" id="c5"><label for="c5">30&nbsp;Seconds</label>
+                            <input type="checkbox" name="timer" value="1_min" id="c6"><label for="c6">1&nbsp;Minute</label>
+                            <input type="checkbox" name="timer" value="2_min" id="c7"><label for="c7">2&nbsp;Minutes</label>
+                            <input type="checkbox" name="timer" value="2.3_min" id="c8"><label for="c9">2&nbsp;Minutes&nbsp;and&nbsp;30&nbsp;Seconds</label>
                         </div>
                     </div>          
                 </div>
             </div>
+            <p>More Coming Soon</p>
             <div class="option_button">
-                <button id="generate" class="btn">Start Quiz!</button>
-            </div>
-        </section>
-        <section id="high_score">
-            <div class="opacity"> 
-                <h2>High Score</h2>
-            </div>
-            <div class="container">
-                <ul class="myUL">
-                    <li>1. </li>
-                    <li>2. </li>
-                    <li>3. </li>
-                    <li>4. </li>
-                    <li>5. </li>
-                    <li>6. </li>
-                    <li>7. </li>
-                    <li>8. </li>
-                    <li>9. </li>
-                    <li>10. </li>
-                </ul>
+                <button id="start" class="btn">Start Quiz!</button>
             </div>
         </section>
     </main>
