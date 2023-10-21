@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Fullstack Quiz</title>
 </head>
 <body>
@@ -12,9 +12,6 @@
         <h1>Fullstack Quiz Questions</h1>
         <nav>
             <ul>
-                <!-- <li>
-                    <a href="#high_score">High Score</a>
-                </li> -->
                 <li class="last-child">
                     <a href="#test_options">Test Options</a>
                 </li>
@@ -22,29 +19,56 @@
         </nav>
     </header>
     <main>
+        <!-- END GAME POPUP -->
+        <section>
+                <div class="popup" id="popup">
+                    <h6>Game Over!</h6>
+                    <p id="score">Your details has been successfully submitted</p>
+                    <button type="button" onclick="closePopup()">OK</button>
+                </div>
+        </section>
+
+        <!-- Text functions and radio buttons for the main part of the quiz -->
         <section id="quiz">
-            <div>
+            <div id="quiz_content">
                 <h5 id="timer">Timer:</h5>
                 <h3 id="query">Question Here</h3>
-                
-                <div class="button_group">
-                    <!-- <input type="checkbox" name="option" value="1" id="one"><label for="op_1">Option 1</label>
-                    <input type="checkbox" name="option" value="2" id="two"><label for="op_2">Option 2</label>
-                    <input type="checkbox" name="option" value="3" id="three"><label for="op_3">Option 3</label>
-                    <input type="checkbox" name="option" value="4" id="four"><label for="op_4">Option 4</label> -->
-                    <button class="clicked_one" id="one">Option 1</button>
-                    <button class="clicked_two" id="two">Option 2</button>
-                    <button class="clicked_three" id="three">Option 3</button>
-                    <button class="clicked_four" id="four">Option 4</button>
-                </div>
-                <div class="center">
-                    <div class="button_nav">
-                        <button id="back">Back</button>
-                        <button id="next">Next</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="button_group">
+                            <div class="button_row">
+                                <input type="radio" class="button" id="one" name="quiz_option" value="one">
+                                <label for="one">Option 1</label><br>
+                            </div>
+                            
+                            <div class="button_row">
+                                <input type="radio" class="button" id="two" name="quiz_option" value="two">
+                                <label for="two">Option 2</label><br>
+                            </div>
+                            
+                            <div class="button_row">
+                                <input type="radio" class="button" id="three" name="quiz_option" value="three">
+                                <label for="three">Option 3</label><br>
+                            </div>
+                            <div class="button_row">
+                                <input type="radio" id="four" name="quiz_option" value="four">
+                                <label for="four">Option 4</label><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- back and forward navigation -->
+                    <div class="center">
+                        <div class="button_nav">
+                            <button class= 'back' id="back">Back</button>
+                            <button id="next">Next</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- test options at bottom of page -->
         <section id="test_options">
             <div class="opacity">
                 <h2>Test Options</h2>
@@ -55,26 +79,26 @@
                     <div class="item">
                         <div class="options">
                             <input type="checkbox" name="requirement" value="HTML" id="c1"><label for="c1">HTML</label>
-                            <!-- <input type="checkbox" name="requirement" value="CSS" id="c2"><label for="c2">CSS</label>
+                            <input type="checkbox" name="requirement" value="CSS" id="c2"><label for="c2">CSS</label>
                             <input type="checkbox" name="requirement" value="java_script" id="c3"><label for="c3">Javascript</label>
                             <input type="checkbox" name="requirement" value="web_apis" id="c4"><label for="c4">Web&nbsp;APIs</label>
-                        </div> -->
-                    </div>          
-                </div>
-                <div class="box">
-                    <div class="item">
-                        <div class="options">
-                            <input type="checkbox" name="timer" value="30_sec" id="c5"><label for="c5">30&nbsp;Seconds</label>
-                            <input type="checkbox" name="timer" value="1_min" id="c6"><label for="c6">1&nbsp;Minute</label>
-                            <input type="checkbox" name="timer" value="2_min" id="c7"><label for="c7">2&nbsp;Minutes</label>
-                            <input type="checkbox" name="timer" value="2.3_min" id="c8"><label for="c9">2&nbsp;Minutes&nbsp;and&nbsp;30&nbsp;Seconds</label>
                         </div>
                     </div>          
                 </div>
+                 <div class="box">
+                    <div class="item">
+                        <div class="options" id="optionstimer">
+                            <input type="radio" name="timer" value="30_sec" id="c5"><label for="c5">30&nbsp;Seconds</label>
+                            <input type="radio" name="timer" value="1_min" id="c6"><label for="c6">1&nbsp;Minute</label>
+                            <input type="radio" name="timer" value="2_min" id="c7"><label for="c7">2&nbsp;Minutes</label>
+                            <input type="radio" name="timer" value="2.3_min" id="c8"><label for="c8">2&nbsp;Minutes&nbsp;and&nbsp;30&nbsp;Seconds</label>  
+                        </div>
+                    </div>    
+                </div> 
             </div>
-            <p>More Coming Soon</p>
+            <!-- Starts quiz -->
             <div class="option_button">
-                <button id="start" class="btn">Start Quiz!</button>
+                <button id="start" class="btn" onclick="back_to_game()">Start Quiz!</button>
             </div>
         </section>
     </main>
@@ -83,4 +107,4 @@
     </footer>
     <script src="assets/js/script.js"></script>
 </body>
-</html>
+</html> 

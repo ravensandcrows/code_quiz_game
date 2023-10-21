@@ -1,8 +1,41 @@
-# code_quiz_game
-quiz game to practice concepts for full stack development
+# Fullstack Quiz
+
+## Description
+
+This project is designed to help individuals currently studying computer science to practice common interview questions or concepts in different computer languages. This also comes with a timer that helps
+users to think quickly and identify the correct solutions as soon as possible. 
 
 
-# references
+## Usage
+
+Users can click Test Options at the top of the screen or scroll down to it and select one or more languages
+and a time limit and start the game. After that users choose the option that best answers the question
+and hit the next button after each chice. If a user wants to go back they can select the back button as well.
+At the final question the game will confirm the user is done answering and then score them, or if the user
+runs out of time then the game will remove the quiz and show the final score.
+
+![photo showing test option selection](assets/images/test_options.png)
+Users can select up to four languages and one timer for each game.
+
+![photo showing how the current choice by user is selected](assets/images/select.png)
+The current choice the user has selected will be highlighted before they proceed to the next question
+
+![photo showing what happens when users try to go back too far](assets/images/too_far.png)
+When users try to go back to a question before the very first question, the game lets them know
+that no such question exists.
+
+![a card to ask users if they are done with all their questions](assets/images/finished.png)
+Users will get a chance to confirm they are happy with their choices before finishing the game.
+
+![photo of end game card](assets/images/gameover.png)
+When a user either finishes the game or runs out of time the score will be shown after clearing all the questions.
+
+## License
+
+N/A
+
+
+# References/Credits
 
 make boxes transparent:
 https://developer.mozilla.org/en-US/docs/Learn/CSS/Howto/Make_box_transparent#
@@ -33,4 +66,16 @@ https://www.youtube.com/watch?v=x7WJEmxNlEs
 
 https://codepen.io/ideaguy1974/pen/pZBBLK
 
+other:
+
 https://www.w3schools.com/jsref/jsref_switch.asp#:~:text=The%20switch%20statement%20executes%20a,of%20code%20to%20be%20executed.
+
+https://www.w3schools.com/tags/att_input_type_radio.asp
+
+https://css-tricks.com/almanac/properties/w/whitespace/#:~:text=If%20you%20want%20to%20prevent,line%20(in%20the%20code).
+
+https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
+
+https://www.geeksforgeeks.org/html-dom-input-checkbox-checked-property/
+
+https://www.youtube.com/watch?v=AF6vGYIyV8M
