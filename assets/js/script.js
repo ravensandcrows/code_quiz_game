@@ -1,9 +1,13 @@
 // VARIABLES
 
 //Clock variables
-var time_left = 0;
 var clock = document.getElementById('timer');
 var user_choice = 0;
+var thirty_time_left = 30;
+var one_time_left = 60;
+var two_time_left = 120;
+var two_thirty_time_left = 150;
+
 
 //Quiz Questions
 var html_questions = ["What does HTML stand for?", "What tag is used to separate a line of text?", "How do you insert a comment in HTML?", "How do you create a hyperlink in HTML?", "What does the Head tag do?", "Why should you put an alt attribute in HTML?", "Which tag that creates links should only be used in the Head section?", "Which one is not a type of list?", "Where do you link your CSS page in HTML?","Where do you link your JavaScript page in HTML?"];
@@ -49,6 +53,13 @@ var start_game = document.getElementById("start");
 
 // FUNCTIONS
 
+//remove time if answered incorrectly
+function time_penalty(){
+    thirty_time_left -=2;
+    one_time_left-=5;
+    two_time_left-=10;
+    two_thirty_time_left-=15;
+} 
 //unselects radio buttons
 function unclick(){
     var choice_one = document.getElementById("one").checked = false;
@@ -137,8 +148,9 @@ function point(a){
     }
     else{
         correct_answers.push(0);
+        time_penalty();
     }
-}
+ }
 
 //Answer Key
 function answer_key(a){
@@ -466,32 +478,30 @@ start_button.addEventListener("click", function(){
     }    
     //TIMER CHECK
     if (time_limit[0]==="30_sec"){
-        time_left = 30;
         var timer_id = setInterval(countdown, 1000);
         function countdown() {
-            if (time_left === 0) {
+            if (thirty_time_left === 0) {
                 clearTimeout(timer_id)
-                clock.innerHTML = 'Time remaining: ' + time_left;
+                clock.innerHTML = 'Time remaining: ' + thirty_time_left;
                 test_score();
                 end_game();
                 openPopup();
             } 
             else {
-                clock.innerHTML = 'Time remaining: ' + time_left;                
-                time_left--;
+                clock.innerHTML = 'Time remaining: ' + thirty_time_left;                
+                thirty_time_left--;
             }
         }
     }
     else if(time_limit[0]==='1_min'){
-        var time_left = 60;
         var timer_id = setInterval(countdown, 1000);
 
         function countdown() {
-            const minutes = Math.floor(time_left/60);
-            let seconds = time_left % 60;
+            const minutes = Math.floor(one_time_left/60);
+            let seconds = one_time_left % 60;
 
             seconds = seconds < 10 ? '0' + seconds: seconds;
-            if (time_left === 0){
+            if (one_time_left === 0){
                 clearTimeout(timer_id);
                 clock.innerHTML = 'Time remaining: 0:00';
                 test_score();
@@ -500,20 +510,19 @@ start_button.addEventListener("click", function(){
             }
             else{
                 clock.innerHTML = 'Time remaining: ' + `${minutes}:${seconds}`;
-                time_left--;
+                one_time_left--;
             }
         }
     }
     else if(time_limit[0]==='2_min'){
-        var time_left = 120;
         var timer_id = setInterval(countdown, 1000);
 
         function countdown() {
-            const minutes = Math.floor(time_left/60);
-            let seconds = time_left % 60;
+            const minutes = Math.floor(two_time_left/60);
+            let seconds = two_time_left % 60;
 
             seconds = seconds < 10 ? '0' + seconds: seconds;
-            if (time_left === 0){
+            if (two_time_left === 0){
                 clearTimeout(timer_id);
                 clock.innerHTML = 'Time remaining: 0:00';
                 test_score();
@@ -522,20 +531,19 @@ start_button.addEventListener("click", function(){
             }
             else{
                 clock.innerHTML = 'Time remaining: ' + `${minutes}:${seconds}`;
-                time_left--;
+                two_time_left--;
             }
         }
     }
     else if(time_limit[0]==='2.3_min'){
-        var time_left = 150;
         var timer_id = setInterval(countdown, 1000);
 
         function countdown() {
-            const minutes = Math.floor(time_left/60);
-            let seconds = time_left % 60;
+            const minutes = Math.floor(two_thirty_time_left/60);
+            let seconds = two_thirty_time_left % 60;
 
             seconds = seconds < 10 ? '0' + seconds: seconds;
-            if (time_left === 0){
+            if (two_thirty_time_left === 0){
                 clearTimeout(timer_id);
                 clock.innerHTML = 'Time remaining: 0:00';
                 test_score();
@@ -544,7 +552,7 @@ start_button.addEventListener("click", function(){
             }
             else{
                 clock.innerHTML = 'Time remaining: ' + `${minutes}:${seconds}`;
-                time_left--;
+                two_thirty_time_left--;
             }
         }
     }
@@ -736,3 +744,4 @@ start_button.addEventListener("click", function(){
         });
     }
 });
+
