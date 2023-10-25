@@ -28,7 +28,11 @@ that no such question exists.
 Users will get a chance to confirm they are happy with their choices before finishing the game.
 
 ![photo of end game card](assets/images/gameover.png)
-When a user either finishes the game or runs out of time the score will be shown after clearing all the questions.
+When a user either finishes the game or runs out of time the score will be shown after clearing all the questions
+and ask for the users name.
+
+![photo of highscore section](assets/images/highscore.png)
+where the names of players go after the game
 
 ## License
 
@@ -66,6 +70,15 @@ https://www.youtube.com/watch?v=x7WJEmxNlEs
 
 https://codepen.io/ideaguy1974/pen/pZBBLK
 
+Local Storage:
+https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
+
+https://www.w3schools.com/js/js_json_parse.asp
+
+https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
+
+https://www.w3schools.com/java/ref_string_trim.asp
+
 other:
 
 https://www.w3schools.com/jsref/jsref_switch.asp#:~:text=The%20switch%20statement%20executes%20a,of%20code%20to%20be%20executed.
@@ -79,3 +92,5 @@ https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
 https://www.geeksforgeeks.org/html-dom-input-checkbox-checked-property/
 
 https://www.youtube.com/watch?v=AF6vGYIyV8M
+
+https://michael-karen.medium.com/how-to-save-high-scores-in-local-storage-7860baca9d68
