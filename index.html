@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/reset.css"> 
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Fullstack Quiz</title>
 </head>
@@ -15,18 +15,25 @@
                 <li class="last-child">
                     <a href="#test_options">Test Options</a>
                 </li>
+                <li>
+                    <a href="#high_score">High Scores</a>
+                </li>
             </ul>
         </nav>
     </header>
     <main>
         <!-- END GAME POPUP -->
         <section>
-                <div class="popup" id="popup">
-                    <h6>Game Over!</h6>
-                    <p id="score">Your details has been successfully submitted</p>
-                    <button type="button" onclick="closePopup()">OK</button>
-                </div>
-        </section>
+            <div class="popup" id="popup">
+                <h6>Game Over!</h6>
+                <p id="score">Your details has been successfully submitted</p>
+                <form id="name_form">
+                  <label for="name">Enter your name:</label>
+                  <input type="text" id="name" name="name" required>
+                  <button type="submit" onclick="close_popup()">Submit</button>
+                </form>
+            </div>
+          </section>
 
         <!-- Text functions and radio buttons for the main part of the quiz -->
         <section id="quiz">
@@ -101,10 +108,17 @@
                 <button id="start" class="btn" onclick="back_to_game()">Start Quiz!</button>
             </div>
         </section>
+        <section id="high_score">
+            <div class="opacity">
+                <h2>High Scores</h2>
+            </div>
+            <ol id="name_list"></ol>
+        </section>
+        
     </main>
     <footer>
         <h4>Made for Growth</h4>
     </footer>
-    <script src="assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html> 
