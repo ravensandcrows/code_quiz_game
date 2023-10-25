@@ -44,7 +44,7 @@ var question_eight=[];
 var question_nine=[];
 
 //POPUP variables
-var popup =document.getElementById("popup");
+var popup = document.getElementById("popup");
 var popup_background = document.getElementById("quiz");
 var score = document.getElementById("score");
 
@@ -60,7 +60,8 @@ function time_penalty(){
     two_time_left-=10;
     two_thirty_time_left-=15;
 } 
-//unselects radio buttons
+
+//unselects radio buttons for the game answer options
 function unclick(){
     var choice_one = document.getElementById("one").checked = false;
     choice_one;
@@ -72,7 +73,7 @@ function unclick(){
     choice_four;
 }
 
-//scrolls user back to the top
+//scrolls user back to the top after pressing start
 function back_to_game() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -80,11 +81,11 @@ function back_to_game() {
 
 //scores test
 function test_score(){
+    var temp_score = score_sum;
     for(var i = 0; i<correct_answers.length; i++){
-        score_sum += correct_answers[i];
+        temp_score += correct_answers[i];
     }
-    var final_score = score_sum / 10;
-
+    var final_score = temp_score / 10;
     if (final_score === 1){
         score.innerText = "Score: 100%";
     }
@@ -119,6 +120,19 @@ function test_score(){
         score.innerText = "Score: 0%";
     }
 }
+
+//scores test again, but this time for the highscore section, preventing the test_score() function from running twice and incorrectly doubling score
+function high_score_test_score(){
+    var temp_high_score = score_sum;
+    for(var i = 0; i<correct_answers.length; i++){
+        temp_high_score += correct_answers[i];
+    }
+    var high_score = temp_high_score / 10;
+    high_score = high_score*100;
+    return high_score;
+
+}
+
 //updates option texts 
 function replace_txt(a, b, c, d){
     const radioButtons = [
@@ -141,7 +155,7 @@ function array_to_string(a){
     query.innerText = a;
 }
 
-//Push to answers
+//Push point to answer array 
 function point(a){
     if(a){
         correct_answers.push(1);
@@ -150,7 +164,7 @@ function point(a){
         correct_answers.push(0);
         time_penalty();
     }
- }
+}
 
 //Answer Key
 function answer_key(a){
@@ -285,12 +299,9 @@ function answer_key(a){
     else if(a==="Which of these is NOT a common Web API?"){
         point(quiz_button1.checked);
     }
-    else{
-        correct_answers.push(0);
-    }
-
 }
-//prevents user from getting multiple correct answer by going backwards
+
+//prevents user from getting multiple points for the same answer by going backwards
 function erase_past_answer(){
     var last_answer = correct_answers.pop();
     last_answer;
@@ -422,19 +433,107 @@ function option_choices(a){
         replace_txt("Number API","Google API","Amazon API","AccuWeather API");
     }
 }
-//popup functions
-function openPopup(){
-    popup.classList.add("open-popup");
+
+//POPUP FUNCTIONS
+function open_popup(){
+    popup.classList.add("open_popup");
 }
-function closePopup(){
-    popup.classList.remove("open-popup");
+
+function close_popup(){
     location.reload();
 }
+
+//prevents player from conitnuing to answer questions after the game has closed or after time is up
 function end_game(){
     var display_score= document.getElementById("quiz_content");
     display_score.style.display = "none";
     popup_background.classList.add("popup_container");
 }
+
+//High Score List
+//Builds the list, takes user information from popup, and score
+//also gets information from the local storage so after reload in close_popup(); player can see outcome
+
+//DOMContentLoaded means that once the HTML load it begins to parse but does not wait for photos
+document.addEventListener("DOMContentLoaded", function () {
+    var name_list = document.getElementById("name_list");
+  
+    // get stored names from Local Storage
+    var stored_names = JSON.parse(localStorage.getItem("names")) || [];
+  
+    // Sort the stored names in descending order
+    var sorted_names = stored_names.sort(function (a, b) {
+      var a_number = get_number(a);
+      var b_number = get_number(b);
+      return b_number - a_number;
+    });
+  
+    // move through the sorted names and add them to the list
+    sorted_names.forEach(function (name) {
+      var list_item = document.createElement("li");
+      list_item.textContent = name;
+      name_list.appendChild(list_item);
+    });
+  
+    document.getElementById("name_form").addEventListener("submit", function (event) {
+        // Prevent form submission
+        event.preventDefault(); 
+        var name_input = document.getElementById("name");
+        // Trim any whitespace from the input
+        var name = name_input.value.trim(); 
+  
+        if (name !== "") {
+          var number = high_score_test_score(); 
+  
+          // Check if the number of names is greater than or equal to 10
+          if (name_list.children.length >= 10) {
+            // Remove the lowest score name
+            name_list.removeChild(name_list.lastChild);
+          }
+  
+          var list_item = document.createElement("li");
+          list_item.textContent = name + " - " + number + "%";
+
+          // Find the correct position to insert the new name
+          var all_list_items = name_list.getElementsByTagName("li");
+          var position = 0;
+          while (position < all_list_items.length && get_number(all_list_items[position].textContent) > number) {
+            position++;
+          }
+  
+          if (position === all_list_items.length) {
+            name_list.appendChild(list_item);
+          } else {
+            // Insert the new score at the correct position
+            name_list.insertBefore(list_item, all_list_items[position]); 
+          }
+  
+          // Save the updated list to Local Storage
+          var updatedNames = get_names();
+          localStorage.setItem("names", JSON.stringify(updatedNames));
+  
+          // Clear input field
+          name_input.value = "";
+        }
+      });
+    
+    // get names from the list
+    function get_names() {
+      var names = [];
+      var all_list_items = name_list.getElementsByTagName("li");
+      for (var i = 0; i < all_list_items.length; i++) {
+        var name = all_list_items[i].textContent;
+        names.push(name);
+      }
+      return names;
+    }
+    // get number from the name
+    function get_number(name) {
+      return parseInt(name.split(" - ")[1]);
+    }
+  });
+
+
 
 const start_button = document.querySelector("#start");
 start_button.addEventListener("click", function(){
@@ -475,17 +574,18 @@ start_button.addEventListener("click", function(){
         }
         var new_value = [];
         var final_value = new_value.concat(first_value, second_value, third_value, fourth_value);
-    }    
+    }  
+      
     //TIMER CHECK
     if (time_limit[0]==="30_sec"){
         var timer_id = setInterval(countdown, 1000);
         function countdown() {
-            if (thirty_time_left === 0) {
+            if (thirty_time_left <= 0) {
                 clearTimeout(timer_id)
                 clock.innerHTML = 'Time remaining: ' + thirty_time_left;
                 test_score();
                 end_game();
-                openPopup();
+                open_popup();
             } 
             else {
                 clock.innerHTML = 'Time remaining: ' + thirty_time_left;                
@@ -501,12 +601,12 @@ start_button.addEventListener("click", function(){
             let seconds = one_time_left % 60;
 
             seconds = seconds < 10 ? '0' + seconds: seconds;
-            if (one_time_left === 0){
+            if (one_time_left <= 0){
                 clearTimeout(timer_id);
                 clock.innerHTML = 'Time remaining: 0:00';
                 test_score();
                 end_game();
-                openPopup();
+                open_popup();
             }
             else{
                 clock.innerHTML = 'Time remaining: ' + `${minutes}:${seconds}`;
@@ -522,12 +622,12 @@ start_button.addEventListener("click", function(){
             let seconds = two_time_left % 60;
 
             seconds = seconds < 10 ? '0' + seconds: seconds;
-            if (two_time_left === 0){
+            if (two_time_left <= 0){
                 clearTimeout(timer_id);
                 clock.innerHTML = 'Time remaining: 0:00';
                 test_score();
                 end_game();
-                openPopup();
+                open_popup();
             }
             else{
                 clock.innerHTML = 'Time remaining: ' + `${minutes}:${seconds}`;
@@ -543,12 +643,12 @@ start_button.addEventListener("click", function(){
             let seconds = two_thirty_time_left % 60;
 
             seconds = seconds < 10 ? '0' + seconds: seconds;
-            if (two_thirty_time_left === 0){
+            if (two_thirty_time_left <= 0){
                 clearTimeout(timer_id);
                 clock.innerHTML = 'Time remaining: 0:00';
                 test_score();
                 end_game();
-                openPopup();
+                open_popup();
             }
             else{
                 clock.innerHTML = 'Time remaining: ' + `${minutes}:${seconds}`;
@@ -611,8 +711,8 @@ start_button.addEventListener("click", function(){
         //Next button moves
         const next_button = document.querySelector('#next');
         next_button.addEventListener('click', function() {
-            unclick();
             question_number++;
+            //corrects change to back button after player goes too far
             if(question_number===1){
                 const green = document.querySelector('.back');
                 green.style.backgroundColor = 'darkslategray';
@@ -621,54 +721,63 @@ start_button.addEventListener("click", function(){
             switch(question_number){
                 case 1:
                     answer_key(zero_question);
+                    unclick();
                     array_to_string(first_question);
                     option_choices(first_question);
                     user_input.splice(user_input.indexOf(first_question), 1);
                     break;
                 case 2:
                     answer_key(first_question);
+                    unclick();
                     array_to_string(second_question);
                     option_choices(second_question);
                     user_input.splice(user_input.indexOf(second_question), 1);
                     break;
                 case 3:
                     answer_key(second_question);
+                    unclick();
                     array_to_string(third_question);
                     option_choices(third_question);
                     user_input.splice(user_input.indexOf(third_question), 1);
                     break;
                 case 4:
                     answer_key(third_question);
+                    unclick();
                     array_to_string(fourth_question);
                     option_choices(fourth_question);
                     user_input.splice(user_input.indexOf(fourth_question), 1);           
                     break;
                 case 5:
                     answer_key(fourth_question);
+                    unclick();
                     array_to_string(fifth_question);
                     option_choices(fifth_question);
                     user_input.splice(user_input.indexOf(fifth_question), 1);           
                     break;
                 case 6:
                     answer_key(fifth_question);
+                    unclick();
                     array_to_string(sixth_question);
                     option_choices(sixth_question);
                     user_input.splice(user_input.indexOf(sixth_question), 1);         
                     break;
                 case 7:
                     answer_key(sixth_question);
+                    unclick();
                     array_to_string(seventh_question);
                     option_choices(seventh_question);
                     user_input.splice(user_input.indexOf(seventh_question), 1);       
                     break;
                 case 8:
                     answer_key(seventh_question);
+                    unclick();
                     array_to_string(eighth_question);
                     option_choices(eighth_question);
                     user_input.splice(user_input.indexOf(eighth_question), 1);         
                     break;
                 case 9:
                     answer_key(eighth_question);
+                    unclick();
                     array_to_string(ninth_question);
                     option_choices(ninth_question);
                     user_input.splice(user_input.indexOf(ninth_question), 1);      
@@ -679,7 +788,7 @@ start_button.addEventListener("click", function(){
                     if (response === true){
                         test_score();
                         end_game();
-                        openPopup();
+                        open_popup();
                     }
                     question_number=9;
                     break;
