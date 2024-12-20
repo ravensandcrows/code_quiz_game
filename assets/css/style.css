@@ -1,17 +1,9 @@
-/* Sets some standards for whole page */
-*{
-    box-sizing: border-box;
-    padding: 0%;
-    margin: 0%;
-}
-
 /* sets background color for page */
 body{
     background-color: aliceblue;
 }
 
 /* HEADER */
-
 /* sets background styling of header */
 header{
     display: flex;
@@ -19,57 +11,38 @@ header{
     background-image: url(../images/circuit-board.jpg);
     height: 100px;
 }
-
 /* sets up title of page */
 header h1{
-    display: inline-block;
-    text-align: left;
-    background-color: rgba(7, 15, 56, 0.5);
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 300%;
     margin-left: 1%;
     margin-top: 1%;
     text-decoration: underline;
-    
 }
-
 /* NAV GUIDELINES */
 header nav{
     margin-left: auto;
     margin-top: auto;;
 }
-
 header nav ul{
-    list-style-type: none;
     color: white;
     background-color: rgba(7, 15, 56, 0.5);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 250%;
-    list-style-type: none;
-    padding: 0;
     border: 1px solid #ddd;
 }
-
 header nav ul li{
     display:inline-block;
     padding: 8px 16px;
-    border-bottom: 1px solid #ddd;
     border-left: 1px solid #ddd;
 }
-
-#last-child {
-    border-bottom: none
-}
-
 a{
     color: white;
 }
-
 a:hover{
     color: cornflowerblue;
 }
-
 /* sets up h2/paragraph requirements throughout page */
 h2{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -81,21 +54,16 @@ h2{
     color: white;
     padding-top: .50%;
 }
-
 .opacity{
     background-image: url(../images/circuit-board.jpg);
     height: 75px;
 }
-
 p{
-    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     font-size: 200%;
     margin: 2%;
 }
-
 /* QUIZ */
-
 /* box where questions will appear */
 #query{
     text-align: center;
@@ -107,129 +75,70 @@ p{
     border: 2px solid black;
     background-color: white;
 }
-
 /* timer */
 h5{
     text-align: center;
     font-size: 250%;
     margin-top: 3%;
 }
-
 /* Buttons for quiz*/
 /* sets styling for the buttons inclduing padding/margin */
-
 .row{
-  display: flexbox;
-  flex-direction: row;
+    display: flex;
 }
-
 .button_group {
   overflow:hidden;
   margin: auto;
-  align-items: stretch;
-  justify-content: center;
-  align-items: center; 
-  text-align: center;
   color: white; 
-  padding: 10px 24px; 
-  cursor: pointer; 
   width: 80%;
-  display: block; 
   font-size: 150%; 
   font-weight: bold;
   margin-bottom: 2%;
 }
-
 /* hides radio button  */
 .button_group input[type="radio"] {
-    opacity: 0;
     width: 0;
 }
-
 .button_group label {
-  display: inline-block;
-  justify-content: center;
   padding: 35px 70%;
   background-color: cornflowerblue; 
   border: 1px solid blue; 
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
   cursor: pointer; 
-  font-family: sans-serif, Arial;
-  font-size: 25px;
   white-space: nowrap;
-  border-radius: 4px;
   margin-bottom: 2%; 
 }
-  
 .button_group label:hover {
     background-color: blue;
 }
-
 .button_group input[type="radio"]:checked + label {
-    top: 2px;
-    left: 1px;
-    box-shadow: none;
     background-color: blue;
 }
-
 .button_row{
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
 }
-
 /* Buttons for navigation between questions */
-  
 .button_nav button {
-    margin:auto;
-    display: inline-block;
-    padding: 10px 24px; 
     cursor: pointer; 
-    justify-content: center;
-    align-items: center;
     border: 1px solid gray; 
     color: white; 
-    padding: 10px 24px; 
-    cursor: pointer; 
     width: 25%; 
     height: 100px;
     margin-bottom: 1%;
     font-size: 150%;
     font-weight: bold;
 }
-
-#back{
+#back, #next{
   background-color:darkslategray; 
 }
-
-#next{
-  background-color:darkslategray; 
-}
-
 .center{
     text-align: center;
 }
-  
-.button_nav button:hover {
+#next:hover, #back:hover {
     background-color: green;
 }
-  
-ul.myUL {
-    display: inline-block;
-    text-align: left;
-    padding-right: 15%;
-    margin: 2%;
-}
-
-.myUL li{
-    margin: 45%;
-    font-size: 150%;
-    font-weight: bold;
-}
-
 /* CHECKBOXES */
-
 /* creates grid */
 .grid_container {
     display: grid;
@@ -237,24 +146,15 @@ ul.myUL {
     padding-top: 1%; 
     justify-items: center;
     justify-content: center;
-    align-items: start;
 }
-
 /* sets padding */
 .box {
     padding: 5%;
 }
-
-/* margins */
-.item {
-    margin-bottom: 25%;
-}
- 
 /*hides original checkbox*/
 .options input{
     display: none;
 }
-
 /*Adds rules for spacing between*/
 .options input + label {
     display: block;
@@ -265,31 +165,17 @@ ul.myUL {
     font-size: 150%;
     cursor: pointer;
 }
-
 #optionstimer input + label{
-  display: block;
-  position: relative;
   padding-left: 20%;
   margin-bottom: 10%;
-  margin-left: 2%;
-  font-size: 150%;
-  cursor: pointer;
 }
-
 /* Changes the color of the text when hovered over */
-.options input:hover + label:hover {
+.options label:hover {
     color: cornflowerblue;
 }
-
-/* adds hover element to the checkbox itself */
-.options input:hover + label:before {
-    box-shadow: 0 0 0 1px cornflowerblue;
-}
-
 /* changes shape of the checkbox */
 .options input + label:before {
     content: "";
-    display: block;
     width: 25%;
     height: 110%;
     border: 1px solid black;
@@ -298,90 +184,61 @@ ul.myUL {
     left: 0;
     top: 0;
 }
-
 #optionstimer input + label:before{
   content: "";
-  display: block;
   width: 10%;
   height: 110%;
-  border: 1px solid black;
   border-radius: 1em;
   position: absolute;
   left: 0;
-  top: 0;
 }
-
 /* changes colors once checked */
 .options input:checked + label:before {
-    border-radius: 1em;
     border: 2px solid white;
-    width: 25%;
-    height: 110%;
     background: cornflowerblue;
 }
-
 /* BUTTON */
 .option_button {
     text-align: center;
 }
-
 /* START BUTTON */
 .btn {
     border: none;
     background-color: cornflowerblue;
     border-radius: 25px;
     color: white;
-    display: inline-block;
     font-size: 22px;
     line-height: 22px;
     margin: 16px 16px 16px 20px;
     padding: 14px 34px;
-    text-align: center;
     cursor: pointer;
 }
-
 /* FOOTER */
 footer{
     background-image: url(../images/circuit-board.jpg);
-    margin-top: auto;
-    width: 100%;
-    height: 50px;
-    flex-wrap: wrap;
-    display: flexbox;
+    height: 100%;
+    padding: 1%;
 }
-
 h4{
     text-align: center;
-    color: aliceblue;
-    background-color: rgba(7, 15, 56, 0.5);
     color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 250%;
 }
-
 .popup_container{
-    width: 100%;
     height: 100vh;
     background: aliceblue;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: monospace;
 }
-
 /* POPUP */
-
 .popup_btn{
     padding:10px 60px;
     background: #fff;
     border:0;
-    outline: none;
     cursor: pointer;
     font-size: 22px;
     font-weight: 500;
     border-radius: 30px;
 }
-
 .popup{
     width: 400px;
     background:#fff;
@@ -396,13 +253,11 @@ h4{
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
 }
-
 .open_popup{
     visibility: visible;
     top:50%;
     transform: translate(-50%, -50%) scale(1);
 }
-
 .popup h6{
     font-size: 38px;
     font-weight: 500;
@@ -411,7 +266,6 @@ h4{
     background-color: darkblue;
     color: white;
 }
-
 .popup button{
     width: 100%;
     margin-top: 50px;
@@ -424,18 +278,14 @@ h4{
     cursor: pointer;
     box-shadow: 0 5px 5px rgba(0,0,0,0.2)
 }
-
 ol li{
-    display: list-item;
     margin-top: 3%;
     margin-bottom: 3%;
-    justify-content: center;
     text-align: center;
     font-size: 150%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     list-style-position: inside;
 }
-
 /* Small smartphones - ont styling based on size of reader */
 @media screen and (max-width: 576px) {
     header h1{
